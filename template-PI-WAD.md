@@ -18,20 +18,57 @@
 
 ## <a name="c1"></a>1. Introdução (Semana 01)
 
-*Preencha com até 300 palavras – sem necessidade de fonte.*
-*Descreva brevemente o sistema que você irá desenvolver.*
-Oiiiiajiaj
+&nbsp;&nbsp;&nbsp;&nbsp; O meu projeto é um sistema de reserva de salas para agendamento e tem como objetivo desenvolver um sistema online para reserva de salas de estudos dentro da faculdade. Atualmente os alunos, professores e funcionários precisam ir à recepção para reservar uma salinha, e isso acaba sendo um pouco complicado de conseguir reservar, especialmente para os estudantes de outros anos que começam as aulas mais tarde. Os alunos do primeiro ano, por exemplo, entram às 7h40, enquanto os do segundo ano iniciam às 10h, o que torna mais vantajosa para o primeiro. Além disso, só podemos reservar no mesmo dia, e algumas salas são fixas para algumas pessoas.
+
+ &nbsp;&nbsp;&nbsp;&nbsp; Pensando nisso, o sistema proposto permitirá que os alunos visualizem, em tempo real, as salas disponíveis e realizem suas reservas diretamente pelo site. o sistema iria continuar com a regra atual de reservar no mesmo dia, e também continuaram com as salas fixas, o aluno e o time do inteli poderia ver as salas que já estão reservadas e reservar um horário Com isso, pretende-se melhorar a organização, otimizar o tempo dos usuários e tornar o processo mais acessível.
+
 ---
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
 ### 2.1. Personas (Semana 01)
 
-*Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.*
+<br>
+
+<div align="center">
+<sub>Figura 01 - Persona</sub>
+<br>
+<br>
+<img src="assets/Persona.png" alt='imagem da persona' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+<br>
 
 ### 2.2. User Stories (Semana 01)
 
-*Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.*
+US01: Como estudante, quero reservar uma sala de estudos diretamente pelo site, para que eu consiga agendar sem precisar ir até a recepção.
+
+US02: Como usuário, quero ver a disponibilidade das salas em tempo real, para conseguir ver se há salas livres no momento e realizar a reserva.
+
+US03: Como usuário, quero visualizar quais salas são fixas para determinadas pessoas, para que eu possa entender melhor a disponibilidade e planejar minha reserva.
+
+US04: Como usuário, gostaria de poder cancelar minha reserva de sala até um certo horário antes da ocupação, para liberar a sala para outras pessoas caso eu não precise mais dela.
+
+Análise INVEST da US02
+
+I = A possibilidade de ver a disponibilidade das salas em tempo real pode ser desenvolvida de forma independente, sem depender de outras funcionalidades como agendamento ou cancelamento. 
+
+N = Podemos negociar aspectos como a forma de visualização lista, mapa interativo, etc. ou a atualização da disponibilidade tempo real contínuo ou a cada minuto.
+
+V = Essa funcionalidade é valiosa porque resolve um problema real dos usuários. Saber a disponibilidade das salas em tempo real facilita a reserva e evita que os usuários percam tempo verificando manualmente.
+
+E = É possível estimar o esforço necessário para desenvolver a funcionalidade. Embora envolva integração com o banco de dados e a interface do usuário, o trabalho pode ser dividido em partes menores, como a criação do banco de dados de reservas e a atualização da interface.
+
+S = A User Story pode ser quebrada em tarefas menores, como:
+Criar a estrutura do banco de dados para as salas.
+Implementar o sistema de atualização em tempo real.
+Desenvolver a interface para exibição da disponibilidade.
+
+T = A funcionalidade é testável. Podemos verificar se a disponibilidade das salas está sendo exibida corretamente e se é atualizada conforme o esperado. Também é possível testar casos em que a sala está ocupada e quando está disponível.
+
 
 ---
 
