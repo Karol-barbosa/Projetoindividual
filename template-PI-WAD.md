@@ -32,12 +32,15 @@
 
 <div align="center">
 <sub>Figura 01 - Persona</sub>
+ 
 <br>
 <br>
 <img src="assets/Persona.png" alt='imagem da persona' width="100%">
 <br>
 <br>
+
 <sup>Fonte: Material produzido pela autora (2025)</sup>
+
 </div>
 
 <br>
