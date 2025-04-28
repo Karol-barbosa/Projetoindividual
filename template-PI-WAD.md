@@ -2,7 +2,11 @@
 
 **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
 
+<<<<<<< HEAD
 ## BookUp
+=======
+##  BookUp
+>>>>>>> 958b21bddf351ebd44bc7918db8514fa7aa0c8a3
 
 #### Autora: Karol Rocha Barbosa
 
@@ -36,12 +40,15 @@
 
 <div align="center">
 <sub>Figura 01 - Persona</sub>
+ 
 <br>
 <br>
 <img src="assets/Persona.png" alt='imagem da persona' width="100%">
 <br>
 <br>
+
 <sup>Fonte: Material produzido pela autora (2025)</sup>
+
 </div>
 
 <br>
