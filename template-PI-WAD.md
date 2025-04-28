@@ -2,9 +2,9 @@
 
 **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
 
-## Nome do Projeto
+## BookUp
 
-#### Autor do projeto
+#### Autora: Karol Rocha Barbosa
 
 ## Sumário
 
@@ -18,15 +18,19 @@
 
 ## <a name="c1"></a>1. Introdução (Semana 01)
 
-&nbsp;&nbsp;&nbsp;&nbsp; O meu projeto é um sistema de reserva de salas para agendamento e tem como objetivo desenvolver um sistema online para reserva de salas de estudos dentro da faculdade. Atualmente os alunos, professores e funcionários precisam ir à recepção para reservar uma salinha, e isso acaba sendo um pouco complicado de conseguir reservar, especialmente para os estudantes de outros anos que começam as aulas mais tarde. Os alunos do primeiro ano, por exemplo, entram às 7h40, enquanto os do segundo ano iniciam às 10h, o que torna mais vantajosa para o primeiro. Além disso, só podemos reservar no mesmo dia, e algumas salas são fixas para algumas pessoas.
+ Projeto: Sistema de reserva de Salas de Estudo 
 
- &nbsp;&nbsp;&nbsp;&nbsp; Pensando nisso, o sistema proposto permitirá que os alunos visualizem, em tempo real, as salas disponíveis e realizem suas reservas diretamente pelo site. o sistema iria continuar com a regra atual de reservar no mesmo dia, e também continuaram com as salas fixas, o aluno e o time do inteli poderia ver as salas que já estão reservadas e reservar um horário Com isso, pretende-se melhorar a organização, otimizar o tempo dos usuários e tornar o processo mais acessível.
+&nbsp;&nbsp;&nbsp;&nbsp; No Inteli(faculdade de tecnologia e liderança), trabalhamos em grupo para desenvolver projetos para empresas parceiras. Muita vezes, as equipes precisam de uma salinha reservada para trabalhar com mais foco. A faculdade tem algumas dessas salinhas pelo campus, porém, atualmente, os alunos precisam ir à recepção para reservar, o que pode ser um processo complicado, especialmente para estudantes de outros anos, que começam as aulas em horários diferentes. Por exemplo, os alunos do primeiro ano iniciam às 7h40, enquanto os do segundo ano começam às 10h, tornando a reserva mais vantajosa para os primeiros. Além disso, a reserva só pode ser feita no mesmo dia, e algumas salas são fixas para determinadas pessoas, o que limita a disponibilidade. 
+
+ &nbsp;&nbsp;&nbsp;&nbsp; Pensando nisso, o objetivo deste projeto é criar um sistema online para reserva de salas de estudo. O sistema permitirá que os alunos visualizem, em tempo real, as salas disponíveis e realizem suas reservas diretamente pelo site. O projeto iria continuar com a regra atual de reservar no mesmo dia, e também continuaram com as salas fixas, mas o aluno poderia ver as salas que já estão reservadas e reservar um horário. Com isso, pretende-se melhorar a organização, otimizar o tempo dos usuários e tornar o processo mais acessível.
 
 ---
 
 ## <a name="c2"></a>2. Visão Geral da Aplicação Web
 
 ### 2.1. Personas (Semana 01)
+
+&nbsp;&nbsp;&nbsp;&nbsp; Com o intuito de atender às necessidades dos usuários, é essencial entender quem serão as pessoas que utilizarão o sistema e definir as personas de quem vai usufruir da plataforma. No caso do BookUp, o sistema de reserva de salas de estudo, é fundamental conhecer as características, desejos e desafios dos usuários para criar uma solução que seja útil.A seguir, apresentamos uma persona que representa os principais usuários do sistema e suas necessidades.
 
 <br>
 
@@ -41,6 +45,10 @@
 </div>
 
 <br>
+
+Assim, o BookUp resolve o problema do usuário de forma prática.
+
+
 
 ### 2.2. User Stories (Semana 01)
 
