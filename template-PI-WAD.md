@@ -2,11 +2,8 @@
 
 **_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
 
-<<<<<<< HEAD
-## BookUp
-=======
+
 ##  BookUp
->>>>>>> 958b21bddf351ebd44bc7918db8514fa7aa0c8a3
 
 #### Autora: Karol Rocha Barbosa
 
@@ -24,7 +21,7 @@
 
  Projeto: Sistema de reserva de Salas de Estudo 
 
-&nbsp;&nbsp;&nbsp;&nbsp; No Inteli(faculdade de tecnologia e liderança), trabalhamos em grupo para desenvolver projetos para empresas parceiras. Muita vezes, as equipes precisam de uma salinha reservada para trabalhar com mais foco. A faculdade tem algumas dessas salinhas pelo campus, porém, atualmente, os alunos precisam ir à recepção para reservar, o que pode ser um processo complicado, especialmente para estudantes de outros anos, que começam as aulas em horários diferentes. Por exemplo, os alunos do primeiro ano iniciam às 7h40, enquanto os do segundo ano começam às 10h, tornando a reserva mais vantajosa para os primeiros. Além disso, a reserva só pode ser feita no mesmo dia, e algumas salas são fixas para determinadas pessoas, o que limita a disponibilidade. 
+&nbsp;&nbsp;&nbsp;&nbsp; No Inteli (faculdade de tecnologia e liderança), trabalhamos em grupo para desenvolver projetos para empresas parceiras. Muita vezes, as equipes precisam de uma salinha reservada para trabalhar com mais foco. A faculdade tem algumas dessas salinhas pelo campus, porém, atualmente, os alunos precisam ir à recepção para reservar, o que pode ser um processo complicado, especialmente para estudantes de outros anos, que começam as aulas em horários diferentes. Por exemplo, os alunos do primeiro ano iniciam às 7h40, enquanto os do segundo ano começam às 10h, tornando a reserva mais vantajosa para os primeiros. Além disso, a reserva só pode ser feita no mesmo dia, e algumas salas são fixas para determinadas pessoas, o que limita a disponibilidade. 
 
  &nbsp;&nbsp;&nbsp;&nbsp; Pensando nisso, o objetivo deste projeto é criar um sistema online para reserva de salas de estudo. O sistema permitirá que os alunos visualizem, em tempo real, as salas disponíveis e realizem suas reservas diretamente pelo site. O projeto iria continuar com a regra atual de reservar no mesmo dia, e também continuaram com as salas fixas, mas o aluno poderia ver as salas que já estão reservadas e reservar um horário. Com isso, pretende-se melhorar a organização, otimizar o tempo dos usuários e tornar o processo mais acessível.
 
