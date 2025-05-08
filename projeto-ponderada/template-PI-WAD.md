@@ -108,7 +108,7 @@ Esse modelo garante uma estrutura organizada, facilita a integridade dos dados e
 
 <br>
 <div align="center">
-<sub>Figura 02 - Modelo Logico</sub>
+<sub>Figura 02 - Modelo Lógico</sub>
 <br>
 <br>
 <img src="assets/modelo.drawio.png" alt='imagem do modelo' width="100%">
