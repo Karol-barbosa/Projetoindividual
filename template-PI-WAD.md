@@ -88,9 +88,41 @@ T = A funcionalidade é testável. Podemos verificar se a disponibilidade das sa
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
+O modelo abaixo representa a estrutura do banco de dados utilizada no sistema de reservas de salas. Para construir esse modelo lógico, utilizei a ferramenta Draw.io. Onde defini as principais entidades, seus atributos e os relacionamentos entre elas.
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+O sistema foi estruturado com três tabelas principais:
+
+• Usuário: que armazena os dados dos usuários do sistema, como e-mail e senha.
+
+• Salas: Guarda as informações das salas que podem ser reservadas. como o número.
+
+• Reserva: Essa tabela registra cada reserva feita por um usuário em uma sala. como id, usuario_id, sala_id, data_checkin, data_checkout e status
+
+Relacionamentos:
+
+• Um usuário pode realizar várias reservas (1:N).    
+• Uma sala pode ser reservada várias vezes (1:N).    
+• Cada reserva está sempre vinculada a um usuário e uma sala.
+
+Esse modelo garante uma estrutura organizada, facilita a integridade dos dados e permite futuras expansões no sistema.
+
+<br>
+<div align="center">
+<sub>Figura 02 - Modelo Lógico</sub>
+<br>
+<br>
+<img src="assets/modelo.drawio.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+</div>
+
+<br>
+
+Esse modelo de banco de dados oferece uma estrutura eficiente e organizada para o sistema de reservas de salas,
+
+[Clique aqui para acessar o modelo SQL](/modelo.sql)
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
