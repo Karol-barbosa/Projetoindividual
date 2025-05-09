@@ -122,7 +122,8 @@ Esse modelo garante uma estrutura organizada, facilita a integridade dos dados e
 
 Esse modelo de banco de dados oferece uma estrutura eficiente e organizada para o sistema de reservas de salas,
 
-[Clique aqui para acessar o modelo SQL](/modelo.sql)
+[Clique aqui para acessar o modelo SQL](modelo.sql)
+
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*
