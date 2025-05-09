@@ -1,0 +1,24 @@
+{
+  "name": "projetoindividual",
+  "version": "1.0.0",
+  "description": "Se você for das turmas 15, 17 ou 19, acesse este enunciado aqui para realizar as ponderadas de Computação: [https://github.com/InteliContent/ponderadaM2-B/blob/main/README.md](https://github.com/InteliContent/ponderadaM2-B/blob/main/README.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karol-barbosa/Projetoindividual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karol-barbosa/Projetoindividual/issues"
+  },
+  "homepage": "https://github.com/Karol-barbosa/Projetoindividual#readme",
+  "dependencies": {
+    "espress": "^0.0.0",
+    "express": "^5.1.0"
+  }
+}

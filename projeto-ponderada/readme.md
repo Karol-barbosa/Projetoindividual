@@ -83,8 +83,6 @@ npm start
 
  Isso iniciará o servidor de desenvolvimento do software
 
-Licença
-
 ## Licença
 -------
 
