@@ -45,8 +45,6 @@
 
 * **Express.js:** Framework minimalista utilizado para gerenciar as rotas e a lógica do servidor.
 
-* **Padrão MVC:** Arquitetura que separa o código em três camadas: Model, View e Controller
-
 ## Instalação
 
 Este documento reúne todas as orientações necessárias para instalar os programas, bibliotecas e ferramentas essenciais à configuração do ambiente de desenvolvimento.
