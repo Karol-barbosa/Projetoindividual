@@ -1,5 +1,9 @@
 # Inteli - Instituto de Tecnologia e Liderança
 
+<p align="center">
+<a href= "https://www.inteli.edu.br/"><img src="assets//inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width="40%"></a>
+</p>
+
 # BookUp
 ## Autora: <a href="https://www.linkedin.com/in/karolbarbosarocha/">Karol Barbosa</a>
 
@@ -45,6 +49,8 @@
 
 * **Express.js:** Framework minimalista utilizado para gerenciar as rotas e a lógica do servidor.
 
+* **Padrão MVC:** Arquitetura que separa o código em três camadas: Model, View e Controller
+
 ## Instalação
 
 Este documento reúne todas as orientações necessárias para instalar os programas, bibliotecas e ferramentas essenciais à configuração do ambiente de desenvolvimento.
@@ -79,6 +85,8 @@ npm start
 
 ## Licença
 -------
+
+
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Karol-barbosa/Projetoindividual.git">BookUp</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/Karol-barbosa">Karol Rocha Barbosa</a> é licenciado sob <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Atribuição 4.0 Internacional<img estilo="altura:22px!importante;margem-esquerda:3px;alinhamento-vertical:texto-inferior;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img estilo="altura:22px!importante;margem-esquerda:3px;alinhamento-vertical:texto-inferior;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 
 ## Agradecimentos
