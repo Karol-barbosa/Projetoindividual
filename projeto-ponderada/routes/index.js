@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const UserController = require('../controllers/userController');
 
-router.get('/', (req, res) => {
-  res.send('Rota principal funcionando!');
-});
+router.post('/login', UserController.login);
 
 module.exports = router;
