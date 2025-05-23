@@ -14,6 +14,7 @@ async function criar(req, res) {
 
     res.status(201).json(novaReserva);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ erro: 'Erro ao criar reserva', detalhes: error.message });
   }
 }
@@ -23,6 +24,7 @@ async function listar(req, res) {
     const reservas = await reservaService.listarReservas();
     res.status(200).json(reservas);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ erro: 'Erro ao listar reservas', detalhes: error.message });
   }
 }
@@ -39,6 +41,7 @@ async function deletar(req, res) {
 
     res.status(200).json({ mensagem: 'Reserva cancelada com sucesso', reserva });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ erro: 'Erro ao cancelar reserva', detalhes: error.message });
   }
 }
@@ -62,6 +65,7 @@ async function atualizarStatus(req, res) {
 
     res.status(200).json({ mensagem: 'Status atualizado com sucesso', reserva });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ erro: 'Erro ao atualizar status', detalhes: error.message });
   }
 }
@@ -79,6 +83,7 @@ async function editar(req, res) {
 
     res.status(200).json({ mensagem: 'Reserva atualizada com sucesso', reserva });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ erro: 'Erro ao atualizar reserva', detalhes: error.message });
   }
 }

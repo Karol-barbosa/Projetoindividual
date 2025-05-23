@@ -83,6 +83,57 @@ npm start
 
  Isso iniciará o servidor de desenvolvimento do software
 
+ ## Configuração do Banco de Dados
+
+Este projeto utiliza o PostgreSQL por meio do Supabase.
+
+1. **Crie uma conta no Supabase:** https://supabase.com
+
+2. **Crie um novo projeto e configure o banco de dados PostgreSQL**
+
+3. **No painel do Supabase, acesse o SQL Editor e crie as tabelas necessárias com o seguinte script:**
+
+``` CREATE TABLE usuario (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE salas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    numero VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE reserva (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    sala_id INT NOT NULL,
+    data_checkin DATE NOT NULL,
+    data_checkout DATE NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    FOREIGN KEY (sala_id) REFERENCES salas(id)
+);
+```
+
+4. **Copie a URL de conexão do banco no Supabase e adicione no arquivo .env na raiz do projeto:**
+
+```DATABASE_URL="sua_connection_string_aqui"```
+
+## Testando as APIs
+
+Você pode testar os endpoints da API utilizando o Postman:
+
+1. **Baixe e instale o Postman: https://www.postman.com/downloads/**
+
+2. **Com o servidor rodando (npm start), abra o Postman e crie requisições para testar os endpoints da API.**
+
+## Exemplo de Requisição no Postman
+
+* **GET http://localhost:3000/usuarios**
+
+
 ## Licença
 -------
 

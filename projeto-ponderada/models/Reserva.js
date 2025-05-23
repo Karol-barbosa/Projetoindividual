@@ -2,7 +2,7 @@ const db = require('../config/database');
 
 async function criarReserva({ usuario_id, sala_id, data_checkin, data_checkout, status = 'pendente' }) {
   const query = `
-    INSERT INTO reserva (usuario_id, sala_id, data_checkin, data_checkout, status)
+    INSERT INTO reservas (usuario_id, sala_id, data_checkin, data_checkout, status)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING *;
   `;
@@ -14,20 +14,20 @@ async function criarReserva({ usuario_id, sala_id, data_checkin, data_checkout, 
 }
 
 async function listarReservas() {
-  const query = `SELECT * FROM reserva ORDER BY data_checkin ASC;`;
+  const query = `SELECT * FROM reservas ORDER BY data_checkin ASC;`;
   const result = await db.query(query);
   return result.rows;
 }
 
 async function deletarReserva(id) {
-  const query = `DELETE FROM reserva WHERE id = $1 RETURNING *;`;
+  const query = `DELETE FROM reservas WHERE id = $1 RETURNING *;`;
   const result = await db.query(query, [id]);
   return result.rows[0]; 
 }
 
 async function atualizarStatusReserva(id, novoStatus) {
   const query = `
-    UPDATE reserva 
+    UPDATE reservas 
     SET status = $1 
     WHERE id = $2 
     RETURNING *;
@@ -38,7 +38,7 @@ async function atualizarStatusReserva(id, novoStatus) {
 
 async function editarReserva(id, dados) {
   const query = `
-    UPDATE reserva
+    UPDATE reservas
     SET usuario_id = $1,
         sala_id = $2,
         data_checkin = $3,

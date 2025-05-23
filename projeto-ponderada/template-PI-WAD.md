@@ -1,8 +1,5 @@
 # Web Application Document - Projeto Individual - Módulo 2 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
-
-
 ##  BookUp
 
 #### Autora: Karol Rocha Barbosa
@@ -126,22 +123,128 @@ Esse modelo de banco de dados oferece uma estrutura eficiente e organizada para 
 
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+
+O sistema utiliza um banco de dados relacional PostgreSQL (via Supabase) com três tabelas principais: users, salas e reservas. Cada tabela representa um model no sistema e armazena dados fundamentais para o funcionamento da aplicação de reserva de salas.
+
+## Tabela Users
+# 3.1.1 Modelos de Banco de Dados (BD e Models)
+
+O sistema utiliza um banco de dados relacional PostgreSQL (via Supabase) com três tabelas principais: **users**, **salas** e **reservas**. Cada tabela representa um *model* no sistema e armazena dados fundamentais para o funcionamento da aplicação de reserva de salas.
+
+---
+
+### Tabela: `users`
+
+Armazena os dados dos usuários do sistema.
+
+| Campo | Tipo  | Descrição                    |
+|-------|-------|-----------------------------|
+| `id`  | UUID  | Identificador único do usuário |
+| `name`| TEXT  | Nome do usuário             |
+| `email`| TEXT | Email do usuário            |
+
+---
+
+### Tabela: `salas`
+
+Contém informações sobre as salas disponíveis para reserva.
+
+| Campo       | Tipo    | Descrição                     |
+|-------------|---------|-------------------------------|
+| `id`        | UUID    | Identificador único da sala    |
+| `numero`      | TEXT    |   Número da sala               |
+| `nome`| INTEGER | Nome do usuário      |
+
+
+---
+
+### Tabela: `reservas`
+
+Registra as reservas feitas pelos usuários.
+
+| Campo         | Tipo  | Descrição                                   |
+|---------------|-------|---------------------------------------------|
+| `id`          | UUID  | Identificador único da reserva               |
+| `usuario_id`  | UUID  | Referência ao usuário que fez a reserva      |
+| `sala_id`     | UUID  | Referência à sala reservada                   |
+| `data_checkin`| DATE  | Data de início da reserva                     |
+| `data_checkout`| DATE | Data de fim da reserva                         |
+| `status`      | TEXT  | Status da reserva (pendente, confirmada...) |
+
+---
 
 ### 3.2. Arquitetura (Semana 5)
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+ A imagem mostra a arquitetura do sistema baseado em MVC, com a comunicação entre cliente, servidor e banco de dados. As camadas de controllers e models organizam as funções e acessos aos dados de usuários, salas e reservas.
 
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
+
+<br>
+<div align="center">
+<sub>Figura 3 - Arquitetura </sub>
+<br>
+<br>
+<img src="assets/diagrama.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+</div>
+
+<br>
   
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+*Adicione as      setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
 
 ### 3.3. Wireframes (Semana 03)
 
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
+Abaixo estão todos os wireframes desenvolvidos para o site, representando a estrutura visual e a navegação entre as principais telas da aplicação:
+
+<div align="center">
+<sub>Figura 04 - Tela Login</sub>
+<br>
+<br>
+<img src="assets/login.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+</div>
+
+
+<div align="center">
+<sub>Figura 05 - Tela inicial </sub>
+<br>
+<br>
+<img src="assets/tela3.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+
+<div align="center">
+<sub>Figura 06 - Tela Horários e Salas </sub>
+<br>
+<br>
+<img src="assets/tela1.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+<div align="center">
+<sub>Figura 07 - Tela Horários e Salas</sub>
+<br>
+<br>
+<img src="assets/tela2.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+</div>
+
+Segue o link para o figma: https://www.figma.com/design/Jzm3baNhTEWNguXyodE3WI/Untitled?node-id=0-1&t=RNA1EONufhE1tBat-1
 
 ### 3.4. Guia de estilos (Semana 05)
 
@@ -154,7 +257,39 @@ Esse modelo de banco de dados oferece uma estrutura eficiente e organizada para 
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+Abaixo estão listados todos os endpoints criados para a API do sistema. Cada rota segue o padrão REST, utilizando os métodos HTTP adequados para cada ação (GET, POST, PUT, DELETE).
+
+## Usuários
+
+- **GET /users** = Lista todos os usuários
+
+- **GET /users/id** = Retorna um usuário específico
+
+- **POST /users** = Cria um novo usuário
+
+- **PUT /users/id** = Atualiza um usuário existente
+
+- **DELETE /users** = Remove um usuário 
+
+## Salas
+
+- **Get /salas** = Lista todas as salas
+
+- **Post /salas** = Cria uma nova sala
+
+## Reservas
+
+- **Get /reservas**= Lista todas as reservas
+
+- **Post /reserva** = Cria uma nova reserva
+
+- **Put /reserva/id** = Atualiza uma reserva completa
+
+- **Patch /reserva/id/status** = Atualiza apenas o status da reserva
+
+- **Delete /reserva/id** =  Cancela uma reserva
+
+Os endpoints foram organizados para garantir clareza, eficiência e fácil integração com o sistema, facilitando futuras manutenções e melhorias.
 
 ### 3.7 Interface e Navegação (Semana 07)
 
