@@ -119,7 +119,11 @@ CREATE TABLE reserva (
 
 4. **Copie a URL de conexão do banco no Supabase e adicione no arquivo .env na raiz do projeto:**
 
-```DATABASE_URL="sua_connection_string_aqui"```
+```DATABASE_URL="sua_connection_string_aqui" ```
+
+## Como Rodar as Migrações
+
+Este projeto utiliza PostgreSQL via Supabase como banco de dados. As tabelas são criadas manualmente no painel do Supabase, utilizando o SQL Editor.
 
 ## Testando as APIs
 
@@ -129,14 +133,27 @@ Você pode testar os endpoints da API utilizando o Postman:
 
 2. **Com o servidor rodando (npm start), abra o Postman e crie requisições para testar os endpoints da API.**
 
+
 ## Exemplo de Requisição no Postman
 
 * **GET http://localhost:3000/usuarios**
-
-
+ 
+ <br>
+ <div align="center">
+ <sub> Exemplo </sub>
+ <br>
+ <br>
+ <img src="./projeto-ponderada/assets/postman.png" alt='imagem do modelo' width="100%">
+ <br>
+ <br>
+ <sup></sup>
+ 
+ </div>
+ 
+ <br>
+   
 ## Licença
 -------
-
 
 <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Karol-barbosa/Projetoindividual.git">BookUp</a> por <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://github.com/Karol-barbosa">Karol Rocha Barbosa</a> é licenciado sob <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Creative Commons Atribuição 4.0 Internacional<img estilo="altura:22px!importante;margem-esquerda:3px;alinhamento-vertical:texto-inferior;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img estilo="altura:22px!importante;margem-esquerda:3px;alinhamento-vertical:texto-inferior;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""></a></p>
 
