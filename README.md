@@ -1,9 +1,15 @@
 # Inteli - Instituto de Tecnologia e Liderança
 
-<p align="center">
-<a href= "https://www.inteli.edu.br/"><img src="assets//inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0" width="40%"></a>
-</p>
-
+ <div align="center">
+ <br>
+ <br>
+ <img src="./projeto-ponderada/assets/inteli.png" alt='imagem do modelo' width="100%">
+ <br>
+ <br>
+ <sup></sup>
+ 
+ </div>
+ 
 # BookUp
 ## Autora: <a href="https://www.linkedin.com/in/karolbarbosarocha/">Karol Barbosa</a>
 
