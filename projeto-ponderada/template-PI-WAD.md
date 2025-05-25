@@ -191,8 +191,7 @@ Registra as reservas feitas pelos usuários.
 </div>
 
 <br>
-  
-*Adicione as      setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+
 
 ### 3.3. Wireframes (Semana 03)
 
@@ -248,12 +247,97 @@ Segue o link para o figma: https://www.figma.com/design/Jzm3baNhTEWNguXyodE3WI/U
 
 ### 3.4. Guia de estilos (Semana 05)
 
-*Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.*
+Este guia de estilos foi desenvolvido para garantir consistência visual e comunicativa na construção da solução BookUp. A seguir, você encontrará orientações sobre como utilizar corretamente os principais componentes: tipografia, paleta de cores e assets gráficos.
 
+## Tipografia
+
+A variação maior é para títulos e elementos de destaque.
+
+A variação média é ideal para subtítulos ou botões.
+
+A variação menor deve ser usada para textos auxiliares, legendas ou descrições.
+
+## Cores
+
+As cores devem ser utilizadas conforme abaixo:
+
+#15867D (verde escuro): cor principal, usada em fundos (como cabeçalhos e barra lateral).
+
+#3DD7CA (verde claro): cor de apoio, utilizada para realce de sessões e rodapés.
+
+#6B7267 (cinza escuro): usada em botões e elementos de ação como filtros
+
+#AEAAAA (cinza claro): fundo de campos de entrada e botões neutros.
+
+#000000 (preto): usado em ícones, textos e contrastes.
+
+## Assets
+
+ Ícones de e-mail, usuário, cadeado e engrenagem, foram escolhidos por sua simplicidade e clareza, reforçando a usabilidade e a comunicação direta com o usuário.
+
+<div align="center">
+<sub>Figura 08 - Guia de estilos</sub>
+<br>
+<br>
+<img src="assets/guia.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+</div>
+
+O guia de estilos do BookUp é uma ferramenta essencial para garantir a padronização visual, a clareza na navegação.
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
+A seguir, estão as telas do protótipo de alta fidelidade da aplicação BookUp: 
+<div align="center">
+<sub>Figura 09 - Login</sub>
+<br>
+<br>
+<img src="assets/Loginn.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+<div align="center">
+<sub>Figura 10 - Tela inicial</sub>
+<br>
+<br>
+<img src="assets/tela.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+<div align="center">
+<sub>Figura 11 - Horários e Salas</sub>
+<br>
+<br>
+<img src="assets/tela (1).png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+
+<div align="center">
+<sub>Figura 12 - Horários e Salas</sub>
+<br>
+<br>
+<img src="assets/tela (2).png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+</div>
+
+
+```Link para o Figma:``` https://www.figma.com/design/Jzm3baNhTEWNguXyodE3WI/Untitled?node-id=69-1693&t=90OSd43c8MJKb60D-1
+
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
