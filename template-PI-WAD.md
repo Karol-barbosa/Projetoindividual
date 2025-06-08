@@ -376,9 +376,50 @@ Os endpoints foram organizados para garantir clareza, eficiência e fácil integ
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+Nesta etapa do projeto, foi desenvolvido o frontend do sistema web, com foco em páginas funcionais para cadastro e login de usuários. Utilizando EJS (Embedded JavaScript Templates) no Node.js, criamos interfaces simples e funcionais que se comunicam diretamente com o backend já implementado com Supabase.
+
+## Página de Cadastro
+
+A página de cadastro permite que novos usuários criem uma conta informando e-mail e senha. 
+
+<div align="center">
+<sub>Figura 13 - Cadastro</sub>
+<br>
+<br>
+<img src="assets/teladois.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
 
 ---
+
+## Login
+
+A tela de login permite que usuários registrados entrem no sistema. 
+
+
+<div align="center">
+<sub>Figura 14 - Login</sub>
+<br>
+<br>
+<img src="assets/telaum.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
+
+## Reservar 
+
+Nesta tela, o usuário pode reservar uma sala de estudo escolhendo a data, o horário e a sala desejada. Após preencher as informações, ele clica no botão "Reservar".
+
+
+<div align="center">
+<sub>Figura 15 - Reserva</sub>
+<br>
+<br>
+<img src="assets/telatres.png" alt='imagem do modelo' width="100%">
+<br>
+<br>
+<sup>Fonte: Material produzido pela autora (2025)</sup>
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
 

@@ -28,7 +28,7 @@ body, html {
     background-color: #F9E8EC;
     padding: 15px 30px;
     display: flex;
-    justify-content: space-between; /* Para espaçar logo e actions */
+    justify-content: space-between; 
     align-items: center;
     border-bottom: 1px solid #e0c8ce;
     width: 100%;
@@ -38,7 +38,7 @@ body, html {
 .logo-header {
     font-size: 2.2em;
     font-weight: bold;
-    color: #225E57; /* Cor do antigo sidebar, para manter identidade */
+    color: #225E57; 
     margin: 0;
 }
 

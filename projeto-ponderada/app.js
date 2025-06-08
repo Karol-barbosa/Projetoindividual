@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const path = require('path');
-const { alreadyLoggedIn, isAuthenticated } = require('./middleware/authMiddleware'); // Importar o middleware
+const { alreadyLoggedIn, isAuthenticated, validateSessionUser } = require('./middleware/authMiddleware'); // Importar o middleware
 
 // Configuração da Sessão
 app.use(session({
@@ -12,6 +12,10 @@ app.use(session({
     cookie: { secure: false } // Em produção (HTTPS), mude para true
 }));
 console.log('[app.js] Middleware de sessão configurado.');
+
+// Aplica o middleware de validação de sessão em TODAS as requisições após a sessão ser carregada
+app.use(validateSessionUser);
+console.log('[app.js] Middleware validateSessionUser configurado globalmente.');
 
 // View engine
 app.set('view engine', 'ejs');

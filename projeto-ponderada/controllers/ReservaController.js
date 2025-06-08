@@ -13,49 +13,42 @@ exports.renderizarFormulario = (req, res) => {
 };
 
 exports.criar = async (req, res) => {
-  console.log('[ReservaController.js] Requisição recebida em POST /api/reserva (criar)');
+  console.log('[ReservaController.js] POST /api/reservas (criar)');
+  
+  // O ID do usuário vem da sessão, não do corpo da requisição
+  const usuario_id = req.session.userId;
+  const { sala_id, horario_inicio } = req.body; // Esperamos sala_id e horario_inicio
+
   console.log('[ReservaController.js] Corpo da requisição (req.body):', req.body);
+  console.log('[ReservaController.js] ID do usuário da sessão:', usuario_id);
 
-  const { usuario_id, sala_id, data_checkin, data_checkout, status } = req.body;
-
-  if (usuario_id === undefined || sala_id === undefined || !data_checkin || !data_checkout || !status) {
-    console.error('[ReservaController.js] Dados inválidos ou ausentes na requisição para criar:', req.body);
+  if (!usuario_id || !sala_id || !horario_inicio) {
+    console.error('[ReservaController.js] Dados inválidos ou ausentes:', { usuario_id, sala_id, horario_inicio });
     return res.status(400).json({
       erro: 'Dados inválidos ou ausentes',
-      detalhes: 'Campos obrigatórios: usuario_id, sala_id, data_checkin, data_checkout, status'
-    });
-  }
-
-  const checkinDate = new Date(data_checkin);
-  const checkoutDate = new Date(data_checkout);
-
-  if (checkoutDate < checkinDate) {
-    console.error('[ReservaController.js] Data de checkout anterior à data de checkin');
-    return res.status(400).json({
-      erro: 'Data inválida',
-      detalhes: 'A data de checkout não pode ser anterior à data de checkin.'
+      detalhes: 'É necessário estar logado e fornecer sala_id e horario_inicio.'
     });
   }
 
   try {
-    console.log('[ReservaController.js] Chamando reservaService.criarReserva com os dados:', { usuario_id, sala_id, data_checkin, data_checkout, status });
-    const novaReserva = await reservaService.criarReserva({
-      usuario_id: parseInt(usuario_id),
-      sala_id: parseInt(sala_id),
-      data_checkin,
-      data_checkout,
-      status
-    });
+    const dadosReserva = {
+      usuario_id,
+      sala_id,
+      horario_inicio,
+      status: 'confirmada' // Status padrão
+    };
 
-    if (!novaReserva) {
-      console.error('[ReservaController.js] reservaService.criarReserva retornou null ou undefined');
-      return res.status(500).json({ erro: 'Erro ao criar reserva no serviço', detalhes: 'O serviço não retornou uma reserva criada.' });
-    }
-
+    console.log('[ReservaController.js] Chamando reservaService.criarReserva com dados:', dadosReserva);
+    const novaReserva = await reservaService.criarReserva(dadosReserva);
+    
     console.log('[ReservaController.js] Reserva criada com sucesso pelo serviço:', novaReserva);
     res.status(201).json(novaReserva);
   } catch (error) {
-    console.error('[ReservaController.js] Erro ao tentar criar reserva:', error);
+    console.error('[ReservaController.js] Erro ao tentar criar reserva:', error.message);
+    // Verificar se o erro é de sobreposição (pode ser customizado no service)
+    if (error.message.includes('sobreposição') || (error.code === '23P01')) { // 23P01 é exclusion_violation no PostgreSQL
+        return res.status(409).json({ erro: 'Conflito de reserva', detalhes: 'Este horário para esta sala já está reservado.' });
+    }
     res.status(500).json({ erro: 'Erro interno do servidor ao criar reserva', detalhes: error.message });
   }
 };

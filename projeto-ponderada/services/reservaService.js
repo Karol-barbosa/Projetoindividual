@@ -1,23 +1,38 @@
 const Reserva = require('../models/Reserva');
 
-async function criarReserva(dados) {
-    console.log('[reservaService.js] Função criarReserva chamada com dados:', dados);
+function construirDatasCheckinCheckout(horarioInicio) {
+    const hoje = new Date();
+    const [hora, minuto] = horarioInicio.split(':').map(Number);
+  
+    const dataCheckin = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate(), hora, minuto);
+    const dataCheckout = new Date(dataCheckin.getTime() + 60 * 60 * 1000); // Adiciona 1 hora em milissegundos
+  
+    return { dataCheckin, dataCheckout };
+}
+
+async function criarReserva({ usuario_id, sala_id, horario_inicio, status }) {
+    console.log('[reservaService.js] Função criarReserva chamada com dados:', { usuario_id, sala_id, horario_inicio, status });
+    
+    // Constrói as datas de check-in e check-out completas
+    const { dataCheckin, dataCheckout } = construirDatasCheckinCheckout(horario_inicio);
+
+    // Converte para o formato que o driver do PostgreSQL (pg) entende bem (ISO 8601)
+    const dadosParaModelo = {
+        usuario_id,
+        sala_id,
+        data_checkin: dataCheckin.toISOString(),
+        data_checkout: dataCheckout.toISOString(),
+        status
+    };
+
     try {
-        // Aqui poderíamos validar se as datas são válidas, se a sala existe, etc.
-        console.log('[reservaService.js] Chamando Reserva.criarReserva (Model) com dados:', dados);
-        const reservaCriada = await Reserva.criarReserva(dados);
-        
-        if (!reservaCriada) {
-            console.error('[reservaService.js] Reserva.criarReserva (Model) retornou null ou undefined');
-            // Você pode querer lançar um erro aqui ou retornar null para o controller tratar
-            throw new Error('Modelo não conseguiu criar a reserva.');
-        }
+        console.log('[reservaService.js] Chamando Reserva.criarReserva (Model) com dados:', dadosParaModelo);
+        const reservaCriada = await Reserva.criarReserva(dadosParaModelo);
         
         console.log('[reservaService.js] Reserva criada pelo modelo:', reservaCriada);
         return reservaCriada;
     } catch (error) {
         console.error('[reservaService.js] Erro ao tentar criar reserva no serviço:', error);
-        // Propagar o erro para o controller, que então enviará uma resposta 500.
         throw error; 
     }
 }

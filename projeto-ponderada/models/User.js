@@ -9,12 +9,12 @@ const User = {
             console.log('[User.js (Model)] Senha hasheada.');
             
             const query = `
-                INSERT INTO usuarios (nome, email, senha_hash)
+                INSERT INTO usuario (nome, email, senha_hash)
                 VALUES ($1, $2, $3)
                 RETURNING id, nome, email;
             `;
             const values = [nome, email, senhaHash];
-            console.log("[User.js (Model)] Executando query de inserção em 'usuarios'...");
+            console.log("[User.js (Model)] Executando query de inserção em 'usuario'...");
             const result = await db.query(query, values);
             
             if (result.rows && result.rows.length > 0) {
@@ -36,8 +36,8 @@ const User = {
 
     async buscarUsuarioPorEmail(email) {
         console.log('[User.js (Model)] Buscando usuário por email:', email);
-        const query = `SELECT * FROM usuarios WHERE email = $1;`;
-        console.log("[User.js (Model)] Executando query de busca em 'usuarios'...");
+        const query = `SELECT * FROM usuario WHERE email = $1;`;
+        console.log("[User.js (Model)] Executando query de busca em 'usuario'...");
         try {
             const result = await db.query(query, [email]);
             if (result.rows.length > 0) {
@@ -48,6 +48,24 @@ const User = {
             return null;
         } catch (error) {
             console.error('[User.js (Model)] Erro ao buscar usuário por email no banco de dados:', error);
+            throw error;
+        }
+    },
+
+    async buscarUsuarioPorId(id) {
+        console.log('[User.js (Model)] Buscando usuário por ID:', id);
+        const query = `SELECT * FROM usuario WHERE id = $1;`;
+        console.log("[User.js (Model)] Executando query de busca por ID em 'usuario'...");
+        try {
+            const result = await db.query(query, [id]);
+            if (result.rows.length > 0) {
+                console.log('[User.js (Model)] Usuário encontrado com ID:', id);
+                return result.rows[0];
+            }
+            console.log('[User.js (Model)] Nenhum usuário encontrado com o ID:', id);
+            return null;
+        } catch (error) {
+            console.error('[User.js (Model)] Erro ao buscar usuário por ID no banco de dados:', error);
             throw error;
         }
     }

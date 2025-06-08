@@ -4,143 +4,174 @@ console.log('dashboard.js carregado');
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[dashboard.js] DOM Carregado');
 
+    // === ELEMENTOS DA UI ===
     const horariosDisponiveisContent = document.getElementById('horariosDisponiveisContent');
     const salasDisponiveisContent = document.getElementById('salasDisponiveisContent');
     const btnConfirmarReserva = document.getElementById('btnConfirmarReserva');
     const mensagemReservaDiv = document.getElementById('mensagemReserva');
 
-    // Horários de 08:00 às 21:00, de 1 em 1 hora
-    const SLOTS_HORARIOS = [];
-    for (let i = 8; i < 21; i++) {
-        const inicio = i.toString().padStart(2, '0') + ':00';
-        const fim = (i + 1).toString().padStart(2, '0') + ':00';
-        SLOTS_HORARIOS.push({ id: `horario-${i}-${i+1}`, texto: `${inicio} - ${fim}` });
+    // === ESTADO DA APLICAÇÃO ===
+    const state = {
+        salaSelecionada: null,
+        horarioSelecionado: null,
+        reservasDeHoje: [],
+        slotsHorarios: Array.from({ length: 13 }, (_, i) => {
+            const hora = i + 8;
+            const inicio = `${String(hora).padStart(2, '0')}:00`;
+            const fim = `${String(hora + 1).padStart(2, '0')}:00`;
+            return { id: `horario-${hora}`, texto: `${inicio} - ${fim}`, horario_inicio: inicio };
+        })
+    };
+
+    // === FUNÇÕES DE LÓGICA / EVENT HANDLERS ===
+    function handleSelecionarHorario(slot, buttonElement) {
+        if (buttonElement.disabled) return;
+        state.horarioSelecionado = (state.horarioSelecionado?.id === slot.id) ? null : slot;
+        console.log('Horário selecionado:', state.horarioSelecionado);
+        atualizarUI();
     }
 
-    let salaSelecionada = null;
-    let horarioSelecionado = null;
+    function handleSelecionarSala(buttonElement) {
+        const salaId = buttonElement.dataset.salaId;
+        const salaNome = buttonElement.textContent;
 
+        state.horarioSelecionado = null; // Sempre limpa o horário ao trocar de sala
+        state.salaSelecionada = (state.salaSelecionada?.id === salaId) ? null : { id: salaId, nome: salaNome };
+        console.log('Sala selecionada:', state.salaSelecionada);
+        atualizarUI();
+    }
+
+    async function handleCriarNovaReserva() {
+        if (!state.salaSelecionada || !state.horarioSelecionado) {
+            exibirMensagem('Por favor, selecione uma sala e um horário.', 'erro');
+            return;
+        }
+
+        const dadosReserva = {
+            sala_id: parseInt(state.salaSelecionada.id, 10), // Garante que é número
+            horario_inicio: state.horarioSelecionado.horario_inicio
+        };
+
+        console.log('Enviando para o backend:', dadosReserva);
+        btnConfirmarReserva.disabled = true;
+        exibirMensagem('Processando sua reserva...', 'info');
+
+        try {
+            const response = await fetch('/api/reservas', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosReserva)
+            });
+            const resultado = await response.json();
+            if (!response.ok) {
+                throw new Error(resultado.detalhes || resultado.erro || 'Erro desconhecido');
+            }
+            exibirMensagem(`Reserva confirmada! Sala ${state.salaSelecionada.nome} às ${state.horarioSelecionado.texto}.`, 'sucesso');
+            state.salaSelecionada = null;
+            state.horarioSelecionado = null;
+            await carregarReservasDeHoje();
+        } catch (error) {
+            console.error('Falha ao criar reserva:', error);
+            exibirMensagem(`Erro: ${error.message}. Por favor, tente outro horário.`, 'erro');
+        } finally {
+            atualizarUI();
+        }
+    }
+
+    // === FUNÇÕES DE ATUALIZAÇÃO DA UI (RENDERIZAÇÃO) ===
     function renderizarHorarios() {
         if (!horariosDisponiveisContent) return;
-        horariosDisponiveisContent.innerHTML = ''; // Limpa placeholder "Carregando..."
-
-        SLOTS_HORARIOS.forEach(slot => {
+        horariosDisponiveisContent.innerHTML = '';
+        state.slotsHorarios.forEach(slot => {
             const button = document.createElement('button');
-            button.classList.add('horario-button');
+            button.className = 'horario-button';
             button.dataset.horarioId = slot.id;
+            button.dataset.horarioInicio = slot.horario_inicio;
             button.textContent = slot.texto;
-            button.addEventListener('click', () => selecionarHorario(slot, button));
+            button.addEventListener('click', () => handleSelecionarHorario(slot, button));
             horariosDisponiveisContent.appendChild(button);
         });
     }
 
-    function atualizarBotoesHorario() {
-        document.querySelectorAll('.horario-button').forEach(btn => {
-            if (btn.dataset.horarioId === horarioSelecionado?.id) {
-                btn.classList.add('horario-selecionado');
-            } else {
-                btn.classList.remove('horario-selecionado');
-            }
-            // Aqui futuramente adicionaremos a classe 'horario-reservado' se necessário
-        });
-    }
-
-    function atualizarBotoesSala() {
-        document.querySelectorAll('.sala-button').forEach(btn => {
-            if (btn.dataset.salaid === salaSelecionada?.id) {
-                btn.classList.add('sala-selecionada'); // Adicionaremos este estilo no CSS
-            } else {
-                btn.classList.remove('sala-selecionada');
-            }
-             // Aqui futuramente adicionaremos a classe 'sala-reservada' se necessário
-        });
-    }
-
-    function selecionarHorario(slot, buttonElement) {
-        if (horarioSelecionado && horarioSelecionado.id === slot.id) {
-            horarioSelecionado = null; // Desseleciona se clicar no mesmo
-        } else {
-            horarioSelecionado = slot;
+    function renderizarSalas() {
+        if (salasDisponiveisContent) {
+            salasDisponiveisContent.querySelectorAll('.sala-button').forEach(button => {
+                button.addEventListener('click', () => handleSelecionarSala(button));
+            });
         }
-        console.log('Horário selecionado:', horarioSelecionado);
-        atualizarBotoesHorario();
-        verificarSelecaoCompleta();
-    }
-
-    function selecionarSala(salaId, buttonElement) {
-        if (salaSelecionada && salaSelecionada.id === salaId) {
-            salaSelecionada = null; // Desseleciona se clicar na mesma
-        } else {
-            salaSelecionada = { id: salaId }; // Armazenamos o ID da sala
-        }
-        console.log('Sala selecionada:', salaSelecionada);
-        atualizarBotoesSala();
-        verificarSelecaoCompleta();
-    }
-
-    function verificarSelecaoCompleta() {
-        if (btnConfirmarReserva) {
-            if (salaSelecionada && horarioSelecionado) {
-                btnConfirmarReserva.disabled = false;
-                btnConfirmarReserva.textContent = `Reservar Sala ${salaSelecionada.id} (${horarioSelecionado.texto})`;
-                mensagemReservaDiv.textContent = '';
-            } else {
-                btnConfirmarReserva.disabled = true;
-                btnConfirmarReserva.textContent = 'Selecione Sala e Horário';
-            }
-        }
-    }
-
-    // Adicionar event listeners para os botões de sala existentes
-    if (salasDisponiveisContent) {
-        salasDisponiveisContent.querySelectorAll('.sala-button').forEach(button => {
-            button.addEventListener('click', () => selecionarSala(button.dataset.salaid, button));
-        });
-    }
-
-    if (btnConfirmarReserva) {
-        btnConfirmarReserva.addEventListener('click', async () => {
-            if (!salaSelecionada || !horarioSelecionado) {
-                exibirMensagem('Por favor, selecione uma sala e um horário.', 'erro');
-                return;
-            }
-
-            // Lógica para criar reserva (chamada fetch para o backend)
-            // Por enquanto, apenas um log e mensagem
-            console.log(`Tentando reservar: Sala ${salaSelecionada.id}, Horário: ${horarioSelecionado.texto}`);
-            exibirMensagem(`Reserva para Sala ${salaSelecionada.id} às ${horarioSelecionado.texto} solicitada! (Backend não implementado)`, 'sucesso');
-            
-            // Simular que a reserva foi feita e o horário/sala ficaram indisponíveis (temporário)
-            // No futuro, isso será atualizado com base na resposta real do backend
-            const horarioBtn = document.querySelector(`.horario-button[data-horario-id="${horarioSelecionado.id}"]`);
-            if (horarioBtn) horarioBtn.classList.add('horario-reservado');
-            
-            const salaBtn = document.querySelector(`.sala-button[data-salaid="${salaSelecionada.id}"]`);
-            // if (salaBtn) salaBtn.classList.add('sala-reservada'); // Decidir como marcar a sala toda
-            
-            // Limpar seleção e desabilitar botão
-            salaSelecionada = null;
-            horarioSelecionado = null;
-            atualizarBotoesHorario();
-            atualizarBotoesSala();
-            verificarSelecaoCompleta();
-        });
     }
 
     function exibirMensagem(msg, tipo = 'info') {
         if (mensagemReservaDiv) {
             mensagemReservaDiv.textContent = msg;
             mensagemReservaDiv.className = `mensagem-reserva ${tipo}`;
+            if (!msg) {
+                mensagemReservaDiv.className = 'mensagem-reserva';
+            }
         }
     }
 
-    // Inicialização
-    renderizarHorarios();
-    verificarSelecaoCompleta(); // Para estado inicial do botão de confirmar
+    function atualizarUI() {
+        // Atualiza botões de sala
+        document.querySelectorAll('.sala-button').forEach(btn => {
+            btn.classList.toggle('sala-selecionada', state.salaSelecionada?.id === btn.dataset.salaId);
+        });
 
-    // TODO: Buscar dados de reservas existentes para hoje e marcar salas/horários ocupados.
-    // loadReservasDeHoje(); 
-    // loadSalasOcupadasAgora();
+        // Atualiza botões de horário (disponibilidade e seleção)
+        document.querySelectorAll('.horario-button').forEach(btn => {
+            let estaReservado = false;
+            if (state.salaSelecionada) {
+                estaReservado = state.reservasDeHoje.some(reserva =>
+                    reserva.sala_id == state.salaSelecionada.id &&
+                    new Date(reserva.data_checkin).getHours() === parseInt(btn.dataset.horarioInicio)
+                );
+            }
+            btn.disabled = estaReservado;
+            btn.classList.toggle('horario-reservado', estaReservado);
+            btn.classList.toggle('horario-selecionado', state.horarioSelecionado?.id === btn.dataset.horarioId);
+        });
+
+        // Atualiza botão de confirmação
+        if (btnConfirmarReserva) {
+            const podeReservar = state.salaSelecionada && state.horarioSelecionado;
+            btnConfirmarReserva.disabled = !podeReservar;
+            if (podeReservar) {
+                btnConfirmarReserva.textContent = `Reservar Sala ${state.salaSelecionada.nome} (${state.horarioSelecionado.texto})`;
+            } else {
+                btnConfirmarReserva.textContent = 'Selecione Sala e Horário';
+            }
+        }
+    }
+
+    // === CHAMADAS DE API ===
+    async function carregarReservasDeHoje() {
+        exibirMensagem('Carregando disponibilidade...', 'info');
+        try {
+            const response = await fetch('/api/reservas/hoje');
+            if (!response.ok) throw new Error(`Erro do servidor: ${response.status}`);
+            state.reservasDeHoje = await response.json();
+            console.log('Reservas de hoje carregadas:', state.reservasDeHoje);
+            exibirMensagem('', 'info');
+        } catch (error) {
+            console.error('Erro ao carregar reservas de hoje:', error);
+            exibirMensagem('Não foi possível carregar a disponibilidade das salas.', 'erro');
+            state.reservasDeHoje = [];
+        } finally {
+            atualizarUI();
+        }
+    }
+
+    // === INICIALIZAÇÃO ===
+    function init() {
+        renderizarHorarios();
+        renderizarSalas();
+        if (btnConfirmarReserva) {
+            btnConfirmarReserva.addEventListener('click', handleCriarNovaReserva);
+        }
+        carregarReservasDeHoje();
+    }
+
+    init();
 });
 
 async function fetchData(url) {
