@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nova Reserva</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Nova Reserva</h1>
+
+    <form id="form-reserva" class="formulario">
+      <div class="form-grupo">
+        <label for="usuario_id">ID do Usuário:</label>
+        <input type="number" id="usuario_id" name="usuario_id" required>
+      </div>
+
+      <div class="form-grupo">
+        <label for="sala_id">ID da Sala:</label>
+        <input type="number" id="sala_id" name="sala_id" required>
+      </div>
+
+      <div class="form-grupo">
+        <label for="data_checkin">Data de Check-in:</label>
+        <input type="date" id="data_checkin" name="data_checkin" required>
+      </div>
+
+      <div class="form-grupo">
+        <label for="data_checkout">Data de Check-out:</label>
+        <input type="date" id="data_checkout" name="data_checkout" required>
+      </div>
+
+      <div class="form-grupo">
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+          <option value="pendente">Pendente</option>
+          <option value="confirmada">Confirmada</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-submit">Criar Reserva</button>
+    </form>
+
+    <a href="/reservas-view" class="btn-novo" style="margin-top: 20px;">Voltar para Lista</a>
+  </div>
+
+  <script>
+    document.getElementById('form-reserva').addEventListener('submit', async function (event) {
+      event.preventDefault(); // Evita o reload da página
+
+      const dados = {
+        usuario_id: document.getElementById('usuario_id').value,
+        sala_id: document.getElementById('sala_id').value,
+        data_checkin: document.getElementById('data_checkin').value,
+        data_checkout: document.getElementById('data_checkout').value,
+        status: document.getElementById('status').value
+      };
+
+      try {
+        const resposta = await fetch('/reservas', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+          alert('Reserva criada com sucesso!');
+          window.location.href = '/reservas-view'; // redireciona para a lista
+        } else {
+          const erro = await resposta.json();
+          alert('Erro ao criar reserva: ' + erro.message);
+        }
+      } catch (erro) {
+        console.error(erro);
+        alert('Erro na requisição');
+      }
+    });
+  </script>
+</body>
+</html>

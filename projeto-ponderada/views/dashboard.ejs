@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookUp - Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- Para o calendário, podemos adicionar um CSS de biblioteca depois -->
+</head>
+<body>
+    <div class="dashboard-container-no-sidebar">
+        <main class="main-content">
+            <header class="main-header">
+                <h1 class="logo-header">BookUp</h1>
+                <div class="header-actions">
+                    <button class="icon-button" aria-label="Configurações">⚙️</button>
+                    <button class="icon-button" aria-label="Perfil">👤</button>
+                    <form id="logoutForm" action="/api/usuario/logout" method="POST" style="display: inline;">
+                        <button type="submit" class="logout-button">Sair</button>
+                    </form>
+                </div>
+            </header>
+            <section class="reserve-section">
+                <h2 class="reserve-title">Reserve aqui (para o dia de Hoje)</h2> 
+            </section>
+            <section class="info-cards">
+                <div class="card">
+                    <h2>Horários disponíveis (Hoje) <span class="arrow">↓</span></h2>
+                    <div id="horariosDisponiveisContent" class="horarios-list">
+                        <!-- Horários serão listados aqui como botões pelo dashboard.js -->
+                        <p>Carregando horários...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Salas disponíveis (Hoje) <span class="arrow">↓</span></h2>
+                    <div id="salasDisponiveisContent" class="salas-grid">
+                        <button class="sala-button" data-salaid="A01">A01</button>
+                        <button class="sala-button" data-salaid="A02">A02</button>
+                        <button class="sala-button" data-salaid="A03">A03</button>
+                        <button class="sala-button" data-salaid="A04">A04</button>
+                        <button class="sala-button" data-salaid="A05">A05</button>
+                        <button class="sala-button" data-salaid="A06">A06</button>
+                        <button class="sala-button" data-salaid="A07">A07</button>
+                        <button class="sala-button" data-salaid="A08">A08</button>
+                        <button class="sala-button" data-salaid="A09">A09</button>
+                        <button class="sala-button" data-salaid="A10">A10</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Minhas Reservas (Hoje) <span class="arrow">↓</span></h2>
+                    <div id="horariosReservadosContent">
+                        <p>Carregando...</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Salas Ocupadas (Agora) <span class="arrow">↓</span></h2>
+                    <div id="salasReservadasContent">
+                        <p>Carregando...</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="actions-panel">
+                <button id="btnConfirmarReserva" class="confirm-reserve-button" disabled>Selecione Sala e Horário</button>
+                <div id="mensagemReserva" class="mensagem-reserva"></div>
+            </section>
+
+        </main>
+    </div>
+    <footer class="dashboard-footer">
+        <p>&copy; 2024 BookUp. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="/js/dashboard.js"></script>
+    <script>
+        // Logout handler
+        document.getElementById('logoutForm')?.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            try {
+                const response = await fetch('/api/usuario/logout', { method: 'POST' });
+                const data = await response.json(); 
+                if (response.ok) {
+                    window.location.href = data.redirectTo || '/login'; 
+                } else {
+                    console.error('Falha no logout:', data.erro || 'Erro desconhecido');
+                    alert(data.erro || 'Não foi possível fazer logout.');
+                }
+            } catch (error) {
+                console.error('Erro no logout:', error);
+                alert('Erro ao tentar fazer logout.');
+            }
+        });
+
+        // Lógica para interagir com salas e calendário virá em dashboard.js
+
+    </script>
+</body>
+</html> 

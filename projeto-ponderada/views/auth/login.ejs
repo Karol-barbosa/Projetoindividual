@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Sistema de Reservas</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page"> 
+  <div class="container auth-container"> 
+    <img src="/assets/bookup.png" alt="BookUp Logo" class="login-logo">
+    <h1>Login</h1>
+    
+    <div id="mensagemErroAuth" class="mensagem-erro" style="display: none;"></div>
+
+    <form id="formLogin">
+      <div> 
+        <label for="email">Email:</label> 
+        <input type="email" id="email" name="email" required placeholder="Seu e-mail"> 
+      </div>
+
+      <div>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required placeholder="Sua senha"> 
+      </div>
+  
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem conta? <a href="/registrar">Cadastre-se</a></p>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>

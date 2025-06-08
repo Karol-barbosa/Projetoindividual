@@ -1,14 +1,13 @@
-###
-# Teste da rota POST /reserva (Criar reserva)
+### Teste corrigido da rota POST /reserva (Criar reserva)
 POST http://localhost:3000/reserva
 Content-Type: application/json
 
 {
   "usuario_id": 1,
   "sala_id": 2,
-  "data_checkin": "2025-06-01",
-  "data_checkout": "2025-06-02",
-  "status": "pendente"
+  "data_checkin": "2025-06-06",
+  "data_checkout": "2025-06-12",
+  "status": "confirmada"
 }
 
 ###

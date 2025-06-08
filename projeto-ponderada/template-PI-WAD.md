@@ -341,7 +341,6 @@ A seguir, estão as telas do protótipo de alta fidelidade da aplicação BookUp
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-Abaixo estão listados todos os endpoints criados para a API do sistema. Cada rota segue o padrão REST, utilizando os métodos HTTP adequados para cada ação (GET, POST, PUT, DELETE).
 
 ## Usuários
 

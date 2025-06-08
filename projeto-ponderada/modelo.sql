@@ -9,7 +9,7 @@ CREATE TABLE salas (
     numero VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE reserva (
+CREATE TABLE reservas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT NOT NULL,
     sala_id INT NOT NULL,

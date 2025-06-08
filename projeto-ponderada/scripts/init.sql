@@ -21,3 +21,6 @@ CREATE TABLE IF NOT EXISTS reservas (
   data_checkout DATE NOT NULL,
   status VARCHAR(50) DEFAULT 'pendente'
 );
+
+INSERT INTO salas (id, nome, capacidade) VALUES (2, 'Sala de Estudos A', 10);
+

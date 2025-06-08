@@ -1,0 +1,285 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #F9E8EC; /* Rosa claro - Fundo principal */
+    color: #333;
+    height: 100%;
+}
+
+/* Container principal sem sidebar */
+.dashboard-container-no-sidebar {
+    display: flex;
+    flex-direction: column; /* Para que o footer fique abaixo do main-content */
+    min-height: 100vh;
+}
+
+/* REMOVIDOS ESTILOS .sidebar, .logo, .sidebar-nav, .nav-button */
+
+.main-content {
+    flex-grow: 1; /* Ocupa o espaço disponível */
+    width: 100%; /* Ocupa toda a largura */
+    display: flex;
+    flex-direction: column;
+    /* padding-bottom removido ou ajustado, pois o footer não é mais fixo da mesma forma */
+}
+
+.main-header {
+    background-color: #F9E8EC;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between; /* Para espaçar logo e actions */
+    align-items: center;
+    border-bottom: 1px solid #e0c8ce;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo-header {
+    font-size: 2.2em;
+    font-weight: bold;
+    color: #225E57; /* Cor do antigo sidebar, para manter identidade */
+    margin: 0;
+}
+
+.header-actions .icon-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    margin-left: 20px;
+    cursor: pointer;
+    color: #555;
+}
+
+.header-actions .logout-button {
+    background-color: #A08078;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
+
+.header-actions .logout-button:hover {
+    background-color: #8a6d65;
+}
+
+.reserve-section {
+    text-align: center;
+    padding: 30px 20px; /* Reduzido um pouco o padding superior */
+}
+
+.reserve-title {
+    display: inline-block;
+    background-color: white;
+    color: #A08078;
+    border: 2px solid #A08078;
+    padding: 12px 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 0;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 0 30px 30px 30px;
+    flex-grow: 1;
+}
+
+.card {
+    background-color: #A08078;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card .arrow {
+    font-size: 1.5em;
+}
+
+.card div[id*="Content"] {
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 100px; /* Altura mínima para os cards */
+    flex-grow: 1;
+}
+
+/* Estilos para a lista de horários (botões) */
+.horarios-list {
+    display: flex;
+    flex-direction: column; /* Ou grid, dependendo de como queremos apresentar */
+    gap: 10px;
+}
+
+.horario-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+}
+
+.horario-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.horario-button.horario-reservado {
+    background-color: #C73E1D; /* Cor para horário reservado */
+    color: white;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.horario-button.horario-selecionado {
+    background-color: #76BCB2; /* Verde claro para indicar seleção */
+    color: #225E57;
+    border-color: #225E57;
+}
+
+/* Estilos para a grade de salas */
+.salas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
+}
+
+.sala-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.9em;
+}
+
+.sala-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.sala-button.sala-reservada {
+    background-color: #C73E1D; /* Cor para sala reservada */
+    color: white;
+    cursor: not-allowed;
+}
+
+/* Estilo para sala selecionada */
+.sala-button.sala-selecionada {
+    background-color: #76BCB2; /* Verde claro para indicar seleção */
+    color: #225E57; /* Verde escuro para contraste */
+    border-color: #225E57;
+}
+
+/* Painel de Ações para Reserva */
+.actions-panel {
+    padding: 20px 30px;
+    text-align: center;
+    background-color: #F9E8EC; /* Mesmo fundo rosa claro */
+    border-top: 1px solid #e0c8ce; /* Linha sutil de separação */
+}
+
+.confirm-reserve-button {
+    background-color: #225E57; /* Verde escuro */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.confirm-reserve-button:hover:not(:disabled) {
+    background-color: #1b4a44; /* Verde mais escuro no hover */
+}
+
+.confirm-reserve-button:disabled {
+    background-color: #A08078; /* Marrom claro quando desabilitado */
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.mensagem-reserva {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.95em;
+    min-height: 20px; /* Para evitar que o layout salte */
+}
+
+.mensagem-reserva.sucesso {
+    background-color: #d4edda; /* Verde claro para sucesso */
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensagem-reserva.erro {
+    background-color: #f8d7da; /* Vermelho claro para erro */
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.mensagem-reserva.info {
+    background-color: #e2e3e5; /* Cinza claro para info */
+    color: #383d41;
+    border: 1px solid #d6d8db;
+}
+
+.dashboard-footer {
+    background-color: #76BCB2;
+    height: 60px;
+    width: 100%; /* Ocupa toda a largura */
+    /* position, bottom, left removidos pois não é mais fixo em relação à sidebar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 0 20px; /* Adicionado padding horizontal */
+    box-sizing: border-box;
+    margin-top: auto; /* Empurra o footer para o final se o conteúdo for pequeno */
+}
+
+/* Ajustes para telas menores (exemplo) */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 15px;
+        flex-direction: column; /* Empilhar logo e actions */
+        gap: 10px;
+    }
+    .logo-header {
+        font-size: 1.8em;
+    }
+    .info-cards {
+        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+        padding: 20px;
+    }
+    .reserve-section {
+        padding: 20px;
+    }
+} 

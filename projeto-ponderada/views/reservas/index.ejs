@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- O título pode ser dinâmico, vindo do controller -->
+    <title><%= typeof titulo !== 'undefined' ? titulo : 'Painel de Reservas' %> - BookUp</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Para ícones, considere adicionar Font Awesome ou similar -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+</head>
+<body class="dashboard-page"> <!-- Classe para aplicar o estilo de layout do dashboard -->
+
+    <div class="dashboard-layout">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar collapsed" id="sidebar">
+            <div class="sidebar-logo">
+                <!-- Logo da aplicação -->
+                <img src="/assets/bookup.png" alt="BookUp Logo" id="sidebarLogo">
+                <span class="sidebar-logo-text">BookUp</span> <!-- Texto do logo, visível quando expandido -->
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <!-- Item de menu ativo pode ter uma classe especial -->
+                    <li><a href="/reservas-pages/reservas-view" class="nav-item active"><span class="nav-icon">&#128214;</span><span class="nav-text">Painel</span></a></li>
+                    <li><a href="/reservas-pages/reservas/novo" class="nav-item"><span class="nav-icon">&#10133;</span><span class="nav-text">Nova Reserva</span></a></li>
+                    <!-- Adicionar outros links de navegação se necessário -->
+                    <li><a href="#" id="logoutLinkSidebar" class="nav-item"><span class="nav-icon">&#128682;</span><span class="nav-text">Logout</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-toggle" id="sidebarToggle">
+                 <span class="nav-icon">&#equiv;</span> <!-- Ícone de toggle, pode ser &#9776; ou outro -->
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="main-header">
+                <!-- Título da Página Principal (pode ser dinâmico) -->
+                <div class="main-header-title">
+                     <h1><%= typeof tituloH1 !== 'undefined' ? tituloH1 : '' %></h1>
+                </div>
+                <div class="header-actions">
+                    <!-- Ícones removidos -->
+                </div>
+            </header>
+
+            <!-- NOVA SEÇÃO "RESERVE AQUI" -->
+            <section class="reserve-prompt-section">
+                <h2>Reserve aqui</h2>
+                <p>Consulte os horários e salas disponíveis abaixo para fazer sua reserva.</p>
+            </section>
+
+            <!-- Seção para Ações da Página, como botão "Nova Reserva" -->
+            <!-- <section class="page-actions">
+                 <a href="/reservas-pages/reservas/novo" class="btn-reserve-aqui">Reserve aqui</a>
+            </section> -->
+            
+            <!-- Seção dos quatro cards de informação -->
+            <section class="info-cards-container">
+                <div class="info-card interactive-card expanded" id="card-horarios-disponiveis">
+                    <h3>Horários disponíveis <span class="arrow-down">&uarr;</span></h3>
+                    <div class="card-content" style="display: block;">
+                        <!-- Conteúdo sobre horários disponíveis será carregado aqui (via JS no futuro) -->
+                        <p><span id="numero-horarios-disponiveis">--</span> horários disponíveis hoje.</p>
+                        <p>Consulte os detalhes abaixo.</p>
+                    </div>
+                </div>
+                <div class="info-card interactive-card expanded" id="card-salas-disponiveis">
+                    <h3>Salas disponíveis <span class="arrow-down">&uarr;</span></h3>
+                    <div class="card-content" style="display: block;">
+                        <!-- Conteúdo sobre salas disponíveis será carregado aqui (via JS no futuro) -->
+                        <p><span id="numero-salas-disponiveis">--</span> salas disponíveis agora.</p>
+                        <p>Verifique as opções disponíveis.</p>
+                    </div>
+                </div>
+                <div class="info-card interactive-card" id="card-horarios-reservados">
+                    <h3>Horários reservados <span class="arrow-down">&darr;</span></h3>
+                    <div class="card-content">
+                        <!-- Antiga div #reservas-lista foi removida daqui. -->
+                        <!-- Seu script reservas.js precisará ser adaptado para popular #minhas-reservas-hoje -->
+                        <p>Suas reservas confirmadas para hoje:</p>
+                        <div id="minhas-reservas-hoje" class="reservas-lista-condensada">
+                            <!-- Cards de reserva para hoje aparecerão aqui via reservas.js -->
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card interactive-card" id="card-salas-reservadas">
+                    <h3>Salas reservadas <span class="arrow-down">&darr;</span></h3>
+                    <div class="card-content">
+                        <!-- Conteúdo sobre salas reservadas por você hoje (via JS no futuro) -->
+                        <p>Salas que você já reservou para hoje.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="dashboard-footer">
+        <!-- Texto do rodapé removido -->
+        <!-- <p>&copy; <%= new Date().getFullYear() %> BookUp. Todos os direitos reservados.</p> -->
+    </footer>
+
+    <!-- Scripts JavaScript -->
+    <script src="/js/reservas.js"></script> <!-- Seu script para carregar e gerenciar reservas -->
+    <!-- Script de logout (similar ao que você já tinha) -->
+    <script>
+        // Script para o link de Logout na Sidebar
+        const logoutLinkSidebar = document.getElementById('logoutLinkSidebar');
+        if (logoutLinkSidebar) {
+            logoutLinkSidebar.addEventListener('click', async (event) => {
+                event.preventDefault();
+                console.log('[reservas/index.ejs] Link de logout da sidebar clicado.');
+                try {
+                    const response = await fetch('/api/usuario/logout', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert(data.mensagem || 'Logout realizado com sucesso!');
+                        window.location.href = '/login'; // Redireciona para a página de login
+                    } else {
+                        alert(data.erro || 'Falha ao fazer logout.');
+                    }
+                } catch (error) {
+                    console.error('Erro no logout da sidebar:', error);
+                    alert('Erro ao tentar fazer logout.');
+                }
+            });
+        }
+
+        // Lógica para expandir/recolher os INFO CARDS
+        document.querySelectorAll('.interactive-card h3').forEach(header => {
+            header.addEventListener('click', () => {
+                const cardContent = header.nextElementSibling;
+                const card = header.parentElement;
+                if (cardContent.style.display === 'block') {
+                    cardContent.style.display = 'none';
+                    card.classList.remove('expanded');
+                    header.querySelector('.arrow-down').innerHTML = '&darr;'; // Seta para baixo
+                } else {
+                    cardContent.style.display = 'block';
+                    card.classList.add('expanded');
+                    header.querySelector('.arrow-down').innerHTML = '&uarr;'; // Seta para cima
+                }
+            });
+        });
+
+        // Lógica para expandir/recolher a SIDEBAR
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle'); // Botão de toggle
+        // const mainContent = document.querySelector('.main-content'); // Se precisar ajustar o main content
+
+        // Expandir ao passar o mouse (se não estiver fixo)
+        sidebar.addEventListener('mouseenter', () => {
+            if (!sidebar.classList.contains('fixed-open')) { // Só expande se não estiver fixo aberto
+                 sidebar.classList.remove('collapsed');
+            }
+        });
+
+        // Recolher ao tirar o mouse (se não estiver fixo)
+        sidebar.addEventListener('mouseleave', () => {
+            if (!sidebar.classList.contains('fixed-open')) { // Só recolhe se não estiver fixo aberto
+                sidebar.classList.add('collapsed');
+            }
+        });
+        
+        // Opcional: Toggle para fixar a sidebar aberta/fechada
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('collapsed');
+                sidebar.classList.toggle('fixed-open'); // Adiciona/remove uma classe para estado fixo
+            });
+        }
+
+    </script>
+</body>
+</html>

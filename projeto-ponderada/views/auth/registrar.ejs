@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registrar - Sistema de Reservas</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container auth-container">
+    <h1>Cadastre-se</h1>
+
+    <div id="mensagemErroAuth" class="mensagem-erro" style="display: none;"></div>
+
+    <form id="formRegistrar">
+      <div>
+        <label for="nome">Nome Completo:</label><br>
+        <input type="text" id="nome" name="nome" required><br>
+      </div>
+      
+      <div>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+      </div>
+      
+      <div>
+        <label for="senha">Senha (mínimo 6 caracteres):</label><br>
+        <input type="password" id="senha" name="senha" required><br>
+      </div>
+
+      <div>
+        <label for="confirmaSenha">Confirmar Senha:</label><br>
+        <input type="password" id="confirmaSenha" name="confirmaSenha" required><br><br>
+      </div>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem uma conta? <a href="/login">Faça Login</a></p>
+  </div>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>
