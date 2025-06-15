@@ -425,19 +425,67 @@ Nesta tela, o usuário pode reservar uma sala de estudo escolhendo a data, o hor
 
 ### 4.1 Demonstração do Sistema Web (Semana 8)
 
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+**Link do vídeo**
+
+https://docs.google.com/document/d/1NzrvMLgur-40EqZ7Mfz00XVq1IWvXzthprzRDwSQUCs/edit?usp=sharing
+
+### Desenvolvimento do Sistema Web Completo
+
+O sistema web foi desenvolvido utilizando a arquitetura MVC (Model-View-Controller) com as seguintes tecnologias:
+
+- Backend: Node.js + Express
+
+- Banco de dados: PostgreSQL via Supabase
+
+- Frontend: EJS (Embedded JavaScript Templates)
+
+- Estilo e estrutura visual: HTML, CSS
+
+### Cadastro e Login de Usuário
+
+- Sistema de autenticação funcional
+
+- Armazenamento seguro no banco de dados
+
+## Reservas de Salas
+
+- Interface intuitiva para escolha de sala, horário e data
+
+## Lógica do Código
+
+```- Models: Conectam-se ao Supabase para interagir com o banco. ```
+
+```- Controllers: Recebem as requisições e executam a lógica de negócio. ```
+
+```- Views: Arquivos .ejs que exibem os dados dinamicamente no navegador.```
+
+```- Services: Camada extra para abstrair a lógica de conexão com Supabase.```
+
+```- Rotas: Definem os endpoints acessíveis pelo navegador. ```
 
 ### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
 
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+**Pontos Fortes**
+
+- Estrutura organizada seguindo o padrão MVC
+- Integração com banco de dados real (Supabase)
+- Funcionalidades básicas de autenticação e reserva funcionando corretamente.
+
+
+**Pontos a Melhorar**
+
+- Design visual ainda pode ser mais atrativo
+
+- Feedback visual para o usuário (como mensagens de confirmação ou erro) ainda pode ser melhor implementado.
+
+- Exibição de reservas em tempo real no painel do usuário ainda não está disponível.
+
+- O usuário não consegue visualizar quais salas já estão reservadas nem cancelar sua reserva
 
 
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site:_<br>
-
+https://nodejs.org/docs/latest/api/, https://docs.github.com/pt, https://www.youtube.com/watch?v=Cgvopu9zg8Y
 ---
 ---
